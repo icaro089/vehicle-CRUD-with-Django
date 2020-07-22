@@ -8,11 +8,48 @@ Vehicles List
 
 {% block content %}
 <div class="row">
+    <form method="get">
+        <div class="col-lg-12">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Search by Model">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Filter</button>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+<br/>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Order by</h3>
+    </div>
+    <div class="panel-body">
+        <form method="get">
+            <div class="btn-group" role="group">
+                {% with cat=request.GET.order %}
+                    <button type="submit" class="btn btn-default {% if cat == 'price' %} disabled {% endif %}"
+                            name="order" value="price">Lowest Price</button>
+                    <button type="submit" class="btn btn-default {% if cat == '-price' %} disabled {% endif %}"
+                            name="order" value="-price">Highest Price</button>
+                    <button type="submit" class="btn btn-default {% if cat == 'year' %} disabled {% endif %}"
+                            name="order" value="year">Oldest</button>
+                    <button type="submit" class="btn btn-default {% if cat == '-year' %} disabled {% endif %}"
+                            name="order" value="-year">Newest</button>
+                {% endwith %}
+            </div>
+        </form>
+    </div>
+</div>
+
+<br/>
+<div class="row">
     {% for vehicle in list %}
     <div class="col-md-4">
         <div class="thumbnail">
             <a href="#">
-                <img src="{{vehicle.photo.url}}" style="width: 100%">
+                <img src="{{vehicle.photo.url}}" style="height:250px; width: 500px">
                 <div class="caption">
                     <p>{{vehicle.model}} - {{vehicle.year}} - US${{vehicle.price|intcomma}}</p>
                 </div>
@@ -20,5 +57,19 @@ Vehicles List
         </div>
     </div>
     {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if list.has_previous %}
+            <a href="?page={{ list.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+            page {{ list.number }} from {{ list.paginator.num_pages }}
+        </span>
+        {% if list.has_next %}
+            <a href="?page={{ list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
 </div>
 {% endblock %}

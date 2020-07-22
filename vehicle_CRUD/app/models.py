@@ -18,6 +18,19 @@ class Owner(models.Model):
         return self.name
 
 
+class Accessory(models.Model):
+    CONDITIONS_CHOICES = (
+        ('As New', 'as new'),
+        ('Good', 'good'),
+        ('Bad', 'bad'),
+    )
+    description = models.CharField(max_length=50, null=False)
+    condition = models.CharField(max_length=10, null=False, choices=CONDITIONS_CHOICES)
+
+    def __str__(self):
+        return self.description
+
+
 class Vehicle(models.Model):
     COLOR_CHOICES = (
         ('Black', 'black'),
@@ -39,6 +52,7 @@ class Vehicle(models.Model):
     color = models.CharField(max_length=10, null=False, choices=COLOR_CHOICES)
     year = models.IntegerField(max_length=4, null=False)
     price = models.FloatField(null=False)
+    photo = models.ImageField(upload_to='images')
     type = models.CharField(max_length=15, null=False, choices=TYPE_CHOICES)
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
     accessories = models.ManyToManyField(Accessory)

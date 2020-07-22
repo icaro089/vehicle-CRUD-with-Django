@@ -62,13 +62,13 @@ Vehicles List
 <div class="pagination">
     <span class="step-links">
         {% if list.has_previous %}
-            <a href="?page={{ list.previous_page_number }}">previous</a>
+            <a href="{{base_url}}page={{ list.previous_page_number }}">previous</a>
         {% endif %}
         <span class="current">
             page {{ list.number }} from {{ list.paginator.num_pages }}
         </span>
         {% if list.has_next %}
-            <a href="?page={{ list.next_page_number }}">next</a>
+            <a href="{{base_url}}page={{ list.next_page_number }}">next</a>
         {% endif %}
     </span>
 </div>

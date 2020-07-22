@@ -50,7 +50,7 @@ class Vehicle(models.Model):
     brand = models.CharField(max_length=15, null=False)
     license_plate = models.CharField(max_length=8, null=False)
     color = models.CharField(max_length=10, null=False, choices=COLOR_CHOICES)
-    year = models.IntegerField(max_length=4, null=False)
+    year = models.IntegerField(null=False)
     price = models.FloatField(null=False)
     photo = models.ImageField(upload_to='images')
     type = models.CharField(max_length=15, null=False, choices=TYPE_CHOICES)

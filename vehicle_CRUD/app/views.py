@@ -30,9 +30,10 @@ def vehicle_list(request, template_name='vehicle_list.html'):
     vehicles = {'list': vehicle, 'paginator': paginator, 'base_url': base_url}
     return render(request,template_name, vehicles)
 
+
 def do_paginate(data_list, page_number):
     ret_data_list = data_list
-    result_per_page = 1
+    result_per_page = 2
     paginator = Paginator(ret_data_list, result_per_page)
     try:
         ret_data_list = paginator.page(page_number)

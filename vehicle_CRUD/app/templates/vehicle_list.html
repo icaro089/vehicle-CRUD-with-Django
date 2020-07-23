@@ -11,13 +11,17 @@ Vehicles List
     <form method="get">
         <div class="col-lg-12">
             <div class="input-group">
-                <input type="text" class="form-control" name="search" placeholder="{% if request.GET.search %}Filtering by: {{request.GET.search}}{% else %}Search by Model{% endif %}">
+                <input type="text" class="form-control" name="search"
+                       placeholder="{% if request.GET.search %}Filtering by: {{request.GET.search}}
+                       {% else %}Search by Model{% endif %}">
                 {% if request.GET.order %}
                     <input type="hidden" name="order" value="{{ request.GET.order }}">
                 {% endif %}
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">Filter</button>
-
+                    <a href="{% url 'vehicle_list' %}">
+                        <button class="btn btn-default" type="button">Clear Filter</button>
+                    </a>
                 </span>
             </div>
         </div>

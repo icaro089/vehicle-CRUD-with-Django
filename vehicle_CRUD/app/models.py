@@ -53,7 +53,7 @@ class Vehicle(models.Model):
     year = models.IntegerField(null=False)
     price = models.FloatField(null=False)
     photo = models.ImageField(upload_to='images')
-    type = models.CharField(max_length=15, null=False, choices=TYPE_CHOICES)
+    category = models.CharField(max_length=15, null=False, choices=TYPE_CHOICES)
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
     accessories = models.ManyToManyField(Accessory)
 

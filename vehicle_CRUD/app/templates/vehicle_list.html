@@ -19,7 +19,7 @@ Vehicles List
                 {% endif %}
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">Filter</button>
-                    <a href="{% url 'vehicle_list' %}">
+                    <a href="#">
                         <button class="btn btn-default" type="button">Clear Filter</button>
                     </a>
                 </span>
@@ -53,16 +53,16 @@ Vehicles List
         </form>
     </div>
 </div>
-
 <br/>
+
 <div class="row">
-    {% for vehicle in list %}
+    {% for n in veiculos %}
     <div class="col-md-4">
         <div class="thumbnail">
             <a href="#">
-                <img src="{{vehicle.photo.url}}" style="height:250px; width: 500px">
+                <img src="{{n.photo.url}}" style="height:250px; width: 500px">
                 <div class="caption">
-                    <p>{{vehicle.model}} - {{vehicle.year}} - US${{vehicle.price|intcomma}}</p>
+                    <p>{{n.model}} - {{n.year}} - US${{n.price|intcomma}}</p>
                 </div>
             </a>
         </div>
@@ -70,17 +70,19 @@ Vehicles List
     {% endfor %}
 </div>
 
+
 <div class="pagination">
     <span class="step-links">
-        {% if list.has_previous %}
-            <a href="{{base_url}}page={{ list.previous_page_number }}">previous</a>
+        {% if veiculos.has_previous %}
+            <a href="{{base_url}}&page={{ veiculos.previous_page_number }}">previous</a>
         {% endif %}
         <span class="current">
-            page {{ list.number }} from {{ list.paginator.num_pages }}
+            page {{ veiculos.number }} from {{ veiculos.paginator.num_pages }}
         </span>
-        {% if list.has_next %}
-            <a href="{{base_url}}page={{ list.next_page_number }}">next</a>
+        {% if veiculos.has_next %}
+            <a href="{{base_url}}&page={{ veiculos.next_page_number }}">next</a>
         {% endif %}
     </span>
 </div>
+
 {% endblock %}

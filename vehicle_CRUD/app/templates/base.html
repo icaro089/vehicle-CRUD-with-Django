@@ -17,9 +17,10 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Cars</a></li>
-                    <li><a href="#">Motorcycle</a></li>
-                    <li><a href="#">All</a></li>
+                    <li><a href="{% url 'vehicle_list' vehicle_category='car' %}">Cars</a></li>
+                    <li><a href="{% url 'vehicle_list' vehicle_category='motorcycle' %}">Motorcycle</a></li>
+                    <li><a href="{% url 'vehicle_list' vehicle_category='all' %}">All</a></li>
+
                 </ul>
             </div>
         </div>

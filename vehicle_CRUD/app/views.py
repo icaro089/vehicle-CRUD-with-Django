@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import Vehicle
 
 
-def vehicle_list(request, vehicle_category, template_name='vehicle_list.html'):
+def vehicle_list(request, vehicle_category='all', template_name='vehicle_list.html'):
     query = request.GET.get("search", '')
     order = request.GET.get("order", '')
     page_number = request.GET.get("page", '')

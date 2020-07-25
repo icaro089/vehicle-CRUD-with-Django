@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Vehicle
 
 
@@ -25,7 +25,7 @@ def vehicle_list(request, vehicle_category='all', template_name='vehicle_list.ht
     paginated_vehicle = paginate_result[0]
     paginator = paginate_result[1]
 
-    numeros = {'veiculos': paginated_vehicle, 'paginator': paginator, 'base_url':base_url}
+    numeros = {'veiculos': paginated_vehicle, 'paginator': paginator, 'base_url': base_url}
     return render(request, template_name, numeros)
 
 
@@ -40,3 +40,8 @@ def do_paginate(data_list, page_number):
     except PageNotAnInteger:
         ret_data_list = paginator.page(1)
     return [ret_data_list, paginator]
+
+
+def vehicle_details(request, pk, template_name='vehicle_details.html'):
+    vehicle = get_object_or_404(Vehicle, pk=pk)
+    return render(request, template_name, {'vehicle': vehicle})

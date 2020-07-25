@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+{{vehicle.model}} - {{vehicle.year}}
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <img src="{{vehicle.photo.url}}" style="width:500px; height:250px">
+            <div class="caption">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <ul class="list-group">
+            <li class="list-group-item">Brand: {{vehicle.brand}}</li>
+            <li class="list-group-item">Model: {{vehicle.model}}</li>
+            <li class="list-group-item">Color: {{vehicle.color}}</li>
+            <li class="list-group-item">License: {{vehicle.license_plate}}</li>
+            <li class="list-group-item">Year: {{vehicle.year}}</li>
+            <li class="list-group-item">Price: {{vehicle.price}}</li>
+            <li class="list-group-item">Owners Name: {{vehicle.owner.name}}</li>
+            <li class="list-group-item">Owners Telephone: {{vehicle.owner.telephone}}</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -57,7 +57,7 @@ Vehicles List
     {% for n in veiculos %}
     <div class="col-md-4">
         <div class="thumbnail">
-            <a href="#">
+            <a href="{% url 'vehicle_details' pk=n.pk %}">
                 <img src="{{n.photo.url}}" style="height:250px; width: 500px">
                 <div class="caption">
                     <p>{{n.model}} - {{n.year}} - US${{n.price|intcomma}}</p>

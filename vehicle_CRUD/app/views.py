@@ -31,7 +31,7 @@ def vehicle_list(request, vehicle_category='all', template_name='vehicle_list.ht
 
 def do_paginate(data_list, page_number):
     ret_data_list = data_list
-    result_per_page = 1
+    result_per_page = 5
     paginator = Paginator(ret_data_list, result_per_page)
     try:
         ret_data_list = paginator.page(page_number)
